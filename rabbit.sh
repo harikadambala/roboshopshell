@@ -5,6 +5,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
+MONGDB_HOST=172.31.11.143
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
@@ -49,8 +50,7 @@ systemctl start rabbitmq-server  &>> $LOGFILE
 
 VALIDATE $? "Starting rabbitmq server"
 
-#rabbitmqctl add_user roboshop roboshop123 &>> $LOGFILE     
-rabbitmqctl set_user roboshop roboshop123 &>> $LOGFILE 
+rabbitmqctl add_user roboshop roboshop123 &>> $LOGFILE
 
 VALIDATE $? "creating user"
 
