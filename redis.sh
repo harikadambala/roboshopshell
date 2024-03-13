@@ -24,33 +24,33 @@ VALIDATE(){
 
 if [ $ID -ne 0 ]
 then
-    echo -e "$R ERROR:: Please run this script with root access $N"
+    echo -e "$R ERROR:: Please run this script with root access $N" &>> $LOGFILE
     exit 1 # you can give other than 0
 else
-    echo "You are root user"
+    echo "You are root user" &>> $LOGFILE
 fi # fi means reverse of if, indicating condition end
 
 
 dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
 
-VALIDATE $? "Installing Remi release"
+VALIDATE $? "Installing Remi release" &>> $LOGFILE
 
 dnf module enable redis:remi-6.2 -y
 
-VALIDATE $? "enabling redis"
+VALIDATE $? "enabling redis" &>> $LOGFILE
 
 dnf install redis -y
 
-VALIDATE $? "Installing Redis"
+VALIDATE $? "Installing Redis" &>> $LOGFILE
 
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis/redis.conf
 
-VALIDATE $? "allowing remote connections"
+VALIDATE $? "allowing remote connections" &>> $LOGFILE
 
 systemctl enable redis
 
-VALIDATE $? "Enabled Redis"
+VALIDATE $? "Enabled Redis" &>> $LOGFILE
 
 systemctl start redis
 
-VALIDATE $? "Started Redis"
+VALIDATE $? "Started Redis" &>> $LOGFILE
