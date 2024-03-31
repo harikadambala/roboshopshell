@@ -1,10 +1,9 @@
-
 #!/bin/bash
 
 AMI=ami-0f3c7d07486cad139 #this keeps on changing
 SG_ID=sg-0d7e9a4297607132a #replace with your SG ID
 INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "web")
-ZONE_ID=Z018402424UTMGZJ08WQL # replace your zone ID
+ZONE_ID=Z018402424UTMGZJ08WQL  # replace your zone ID
 DOMAIN_NAME="daws76study.online"
 
 for i in "${INSTANCES[@]}"
@@ -37,3 +36,5 @@ do
         }
         }]
     }
+        '
+done
